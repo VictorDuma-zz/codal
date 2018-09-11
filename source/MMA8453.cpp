@@ -27,7 +27,6 @@ MMA8453::MMA8453(codal::I2C& _i2c, Pin& _int1, CoordinateSpace& coordinateSpace,
 
     this->address = address;
 
-    bp.io.ledBlue.setAnalogValue(100);
     configure();
     updateSample();
 }
@@ -51,7 +50,7 @@ int MMA8453::updateSample() {
 
     if (int1.getDigitalValue() == 0) {
         i2c.readRegister(address, OUT_X_MSB, data, 6);
-
+        bp.io.ledBlue.setAnalogValue(100);
         int32_t x = (data[0] << 2) | (data[1] >> 6);
         int32_t y = (data[2] << 2) | (data[3] >> 6);
         int32_t z = (data[4] << 2) | (data[5] >> 6);
