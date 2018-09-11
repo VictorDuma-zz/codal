@@ -1,12 +1,10 @@
 #include "MMA8453.h"
-#include "BrainPad.h"
 #include "CodalConfig.h"
 #include "ErrorNo.h"
 #include "CodalCompat.h"
 #include "CodalFiber.h"
 
 using namespace codal;
-BrainPad bp;
 
 static const KeyValueTableEntry rangeRegisterData[] = {
     { 2, 0x00 },
@@ -50,7 +48,7 @@ int MMA8453::updateSample() {
 
     if (int1.getDigitalValue() == 0) {
         i2c.readRegister(address, OUT_X_MSB, data, 6);
-        bp.io.ledBlue.setAnalogValue(100);
+
         int32_t x = (data[0] << 2) | (data[1] >> 6);
         int32_t y = (data[2] << 2) | (data[3] >> 6);
         int32_t z = (data[4] << 2) | (data[5] >> 6);
