@@ -1,10 +1,12 @@
 #include "MMA8453.h"
+#include "BrainPad.h"
 #include "CodalConfig.h"
 #include "ErrorNo.h"
 #include "CodalCompat.h"
 #include "CodalFiber.h"
 
 using namespace codal;
+BrainPad bp;
 
 static const KeyValueTableEntry rangeRegisterData[] = {
     { 2, 0x00 },
@@ -25,6 +27,7 @@ MMA8453::MMA8453(codal::I2C& _i2c, Pin& _int1, CoordinateSpace& coordinateSpace,
 
     this->address = address;
 
+    bp.io.ledBlue.setAnalogValue(100);
     configure();
     updateSample();
 }
