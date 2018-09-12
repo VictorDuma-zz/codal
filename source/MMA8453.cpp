@@ -26,6 +26,7 @@ MMA8453::MMA8453(codal::I2C& _i2c, Pin& _int1, CoordinateSpace& coordinateSpace,
     this->address = address;
 
     configure();
+    updateX();
 
 }
 
