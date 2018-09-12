@@ -26,8 +26,7 @@ MMA8453::MMA8453(codal::I2C& _i2c, Pin& _int1, CoordinateSpace& coordinateSpace,
     this->address = address;
 
     configure();
-    updateX();
-
+    updateSample();
 }
 
 MMA8453::~MMA8453() {
@@ -41,11 +40,6 @@ void MMA8453::writeRegister(uint8_t reg, uint8_t val) {
     data[1] = val;
 
     i2c.write(address, data, 2, 0);
-}
-
-void MMA8453::updateX() {
-    while(true)
-        sample.x;
 }
 
 int MMA8453::updateSample() {

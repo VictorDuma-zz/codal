@@ -54,7 +54,6 @@ namespace codal {
         virtual int configure();
         virtual int requestUpdate();
         virtual void idleCallback();
-        void updateX();
     };
 }
 
